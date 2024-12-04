@@ -43,7 +43,8 @@ QString CheckWinner::checkForWin(QWidget *widget)
         QPushButton* btn3 = getBtnByName(btnName3, btnObjects);
 
         if (btn1->text() == btn2->text() && btn2->text() == btn3->text() &&
-        btn1->text() != "" && btn2->text() != "" && btn3->text() != "")
+            btn1->text() == btn3->text() && btn1->text() != "" && btn2->text() != "" &&
+            btn3->text() != "")
         {
             winnerExists = true;
             QString winner = btn1->text() == "x" ? playerX : playerO;
