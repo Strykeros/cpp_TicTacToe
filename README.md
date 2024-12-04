@@ -36,3 +36,7 @@ The game was tested using manual testing. Each program's functions was tested us
 1. https://www.sqlite.org/about.html
 2. https://lembergsolutions.com/blog/why-use-qt-framework
 3. https://doc.qt.io/
+
+## Commented program code
+
+Since the codebase is too large, I will not include the game's code in the readme file, however, the comments are added in the source code itself.
