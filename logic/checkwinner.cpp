@@ -27,6 +27,7 @@ const int CheckWinner::winCombos[8][3] = {
 
 bool CheckWinner::winnerExists = false;
 
+// Check for the winner on each turn
 QString CheckWinner::checkForWin(QWidget *widget)
 {
     QList<QPushButton*> btnObjects = getBtnObjects(widget);
@@ -56,6 +57,7 @@ QString CheckWinner::checkForWin(QWidget *widget)
     return "";
 }
 
+// Check for draw on each turn
 QString CheckWinner::checkForDraw(QWidget *widget){
     QList<QPushButton*> btnObjects = getBtnObjects(widget);
     bool gridIsFilled = btnsContainValue(btnObjects);
@@ -67,6 +69,7 @@ QString CheckWinner::checkForDraw(QWidget *widget){
     return "";
 }
 
+// returns true or false if any button contains text
 bool CheckWinner::btnsContainValue(QList<QPushButton*> buttons){
     for (QPushButton* button : buttons) {
         if (button->text().isEmpty()) {
@@ -76,6 +79,7 @@ bool CheckWinner::btnsContainValue(QList<QPushButton*> buttons){
     return true;
 }
 
+// get all push button objects from the grid
 QList<QPushButton*> CheckWinner::getBtnObjects(QWidget *widget) {
     QList<QPushButton*> buttons;
     if (!widget) return buttons;
@@ -88,6 +92,7 @@ QList<QPushButton*> CheckWinner::getBtnObjects(QWidget *widget) {
     return buttons;
 }
 
+// get push button object from grid by name
 QPushButton* CheckWinner::getBtnByName(QString btnName, QList<QPushButton*> btns){
     
     for(QPushButton* btn : btns)
@@ -101,6 +106,7 @@ QPushButton* CheckWinner::getBtnByName(QString btnName, QList<QPushButton*> btns
     return NULL;
 }
 
+// returns whether there is a winner or not
 bool CheckWinner::getWinnerStatus(){
     return winnerExists;
 }

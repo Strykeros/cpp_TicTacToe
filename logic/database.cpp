@@ -14,6 +14,7 @@ Database::Database() {
 
 }
 
+// connect to database
 void Database::initializeDatabase() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     QString path = "../../databases/game_data.db";
@@ -21,15 +22,16 @@ void Database::initializeDatabase() {
     db.setDatabaseName(path);
 
     if (!db.open()) {
-        std::cout << "Error: connection with database failed: "
+        cout << "Error: connection with database failed: "
                   << db.lastError().text().toStdString();
     } else {
-        std::cout << "Database: connection ok" << std::endl;
+        cout << "Database: connection ok" << "\n";
     }
 
     createTable();
 }
 
+// create necessary tables
 void Database::createTable() {
     QSqlQuery query;
     query.exec(
@@ -41,6 +43,7 @@ void Database::createTable() {
         );
 }
 
+// insert player name and initial score
 void Database::insertData(QString player) {
     QSqlQuery insertQuery;
     insertQuery.prepare("INSERT INTO leaderboard (player, score) VALUES (:player, :score)");
@@ -49,6 +52,7 @@ void Database::insertData(QString player) {
     insertQuery.exec();
 }
 
+// update score for player who won the game
 void Database::updateData(QString player) {
     QSqlQuery query;
     query.prepare("SELECT score FROM leaderboard WHERE player = :player");
@@ -65,6 +69,7 @@ void Database::updateData(QString player) {
     }
 }
 
+// returns whether there is a player or not
 bool Database::playerFound(QString player) {
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) FROM leaderboard WHERE player = :player");
@@ -79,6 +84,7 @@ bool Database::playerFound(QString player) {
     return false;
 }
 
+// gets all players that have a score of atleast "1"
 QVector<QPair<QString, int>> Database::showStats() {
     QVector<QPair<QString, int>> stats;
     QSqlQuery query;

@@ -20,8 +20,8 @@ private:
     static QString playerX;
     static QString playerO;
 public:
-    explicit CheckWinner(Database* db, QString inputPlayerX, QString inputPlayerO);  // Constructor that takes a Database pointer
-    ~CheckWinner();  // Destructor
+    explicit CheckWinner(Database* db, QString inputPlayerX, QString inputPlayerO);
+    ~CheckWinner();
     QString checkForWin(QWidget *widget);
     QString checkForDraw(QWidget *widget);
     QList<QPushButton*> getBtnObjects(QWidget *widget);

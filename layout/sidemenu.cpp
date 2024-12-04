@@ -15,7 +15,7 @@ SideMenu::SideMenu(Database* db){
     SideMenu::innerDb = db;
 }
 
-
+// create side menu
 QDockWidget* SideMenu::initSideMenu(QWidget* parent) {
     QDockWidget *sideMenuDock = new QDockWidget("Game Info", parent);
     sideMenuDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -42,16 +42,19 @@ QDockWidget* SideMenu::initSideMenu(QWidget* parent) {
     return sideMenuDock;
 }
 
+// update label's text, that contains turn status
 void SideMenu::updateTurnLbl(QString playerX, QString playerO) {
     PlayerTurn *turn = new PlayerTurn();
     QString currentTurnTxt = turn->getCurrentTurnTxt(playerX, playerO);
     playerTurnLabel->setText(currentTurnTxt + "'s turn");
 }
 
+// set the label's text, when the game ends (e.g. "the winner is...."; "Its a draw!")
 void SideMenu::setEndGameTxtLbl(QString text){
     playerTurnLabel->setText(text);
 }
 
+// create leaderboard table and show top players with scores
 void SideMenu::showLeaderboard() {
     QVector<QPair<QString, int>> stats = SideMenu::innerDb->showStats();
     QDialog *dialog = new QDialog();
