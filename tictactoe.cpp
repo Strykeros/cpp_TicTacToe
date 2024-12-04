@@ -71,7 +71,7 @@ TicTacToe::TicTacToe(QWidget *parent)
         playerX = QInputDialog::getText(this, tr("Enter Nickname"),
                                         tr("Player X, enter your nickname (atleast 4 chars long):"), QLineEdit::Normal,
                                         QDir::home().dirName(), &ok);
-        if (ok && !playerX.isEmpty() && playerX.length() == 4) break;
+        if (!playerX.isEmpty() && playerX.length() > 3) break;
         QMessageBox::warning(this, tr("Nickname Required"), tr("You must enter a nickname to continue."));
     }
 
@@ -80,7 +80,7 @@ TicTacToe::TicTacToe(QWidget *parent)
         playerO = QInputDialog::getText(this, tr("Enter Nickname"),
                                         tr("Player O, enter your nickname (atleast 4 chars long):"), QLineEdit::Normal,
                                         QDir::home().dirName(), &ok);
-        if (ok && !playerO.isEmpty() && playerX.length() == 4) break;
+        if (!playerO.isEmpty() && playerX.length() > 3) break;
         QMessageBox::warning(this, tr("Nickname Required"), tr("You must enter a nickname to continue."));
     }
 
